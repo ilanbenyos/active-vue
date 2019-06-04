@@ -1,6 +1,6 @@
 <template>
   <v-container class="home app-page">
-    <h1>Front App</h1>
+    <h1 @click="$store.dispatch(`backApp/testConnection`)">Front App</h1>
 
     <h4><small>DB Status: </small>{{ dbStatus }}</h4>
     <h6 class="mb-3">options: ['init','inDb','inStore','empty']</h6>
