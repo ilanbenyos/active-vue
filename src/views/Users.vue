@@ -1,11 +1,11 @@
 <template>
   <div class="users app-page">
-    <h1 class="m-2 text-center">All users</h1>
+    <h1 class="m-2 text-center" >All users</h1>
     <div class="users row">
       <user-card
         v-for="(user, idx) in users"
         :key="idx"
-        class="col-md m-2"
+        class="col-md my-2"
         :user="user"
       >
       </user-card>

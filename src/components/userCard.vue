@@ -1,5 +1,5 @@
 <template>
-  <div class="user-card card flex-row p-3 col-md-3 col-12 col-lg-3">
+  <div class="user-card card flex-row p-3 col-sm-12 col-md-4 col-lg-3">
     <div class="img-wrapper flex-grow-0">
       <div class="img flex-column111">
         <img :src="user.img" alt="" />
@@ -13,10 +13,15 @@
       <div class="work-adress1">{{ user.workAddress1 }}</div>
       <div class="work-adress2">{{ user.workAddress2 }}</div>
       <div class="phone">P:{{ user.phone }}</div>
+      <div class="geo" v-if="user.geo">lat:{{ user.geo.lat }} lng:{{ user.geo.lng }}</div>
     </div>
     <div class="actions d-flex flex-row">
       <div class="icon icon-edit rol-brn" @click="editMe" title="edit"></div>
-      <div class="icon icon-delete rol-btn" @click="deleteMe" title="delete"></div>
+      <div
+        class="icon icon-delete rol-btn"
+        @click="deleteMe"
+        title="delete"
+      ></div>
     </div>
   </div>
 </template>
@@ -37,7 +42,7 @@ export default {
     async deleteMe() {
       try {
         this.$loading(true);
-        await this.$store.dispatch('deleteUser',this.user._id);
+        await this.$store.dispatch("deleteUser", this.user._id);
       } catch (err) {
         console.log(err);
       } finally {
@@ -50,10 +55,13 @@ export default {
 
 <style scoped lang="scss">
 .user-card {
-    min-width:25rem;
+  max-width: calc(100% - 2rem);
+  margin: auto;
+  margin-left: 1rem;
+  min-width: 24rem;
   .img-wrapper {
     max-width: 140px;
-      height: 140px;
+    height: 140px;
   }
   .actions {
     position: absolute;
@@ -64,6 +72,5 @@ export default {
     width: 15px;
     height: 15px;
   }
-
 }
 </style>
