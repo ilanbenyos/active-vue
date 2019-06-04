@@ -11,7 +11,10 @@ export default new Vuex.Store({
   modules: { backApp },
   state: {
     isLoading: false,
-    users: []
+    users: [{"_id":"802236572305446","img":"https://res.cloudinary.com/ilanbeyos/image/upload/v1559660016/wqahmmfnwsm4eiokewng.jpg","workTitle":"cto","userName":"popo","address":"maccabim 8, Raanana","workName":"nrg","workAddress1":"kadima","workAddress2":"apoel 15","phone":"56456456","geo":{"lat":"mock1","lng":"mock2"}},
+      {"_id":"5295965651136276","img":"https://res.cloudinary.com/ilanbeyos/image/upload/v1559660021/sfuzakzlydzmnstvrgap.jpg","workTitle":"cto","userName":"ilan","address":"bet shean","workName":"youtube","workAddress1":"tlv","workAddress2":"michael st 11","phone":"0502100644","geo":{"lat":"mock1","lng":"mock2"}},
+      {"_id":"771424105798251","img":"https://res.cloudinary.com/ilanbeyos/image/upload/v1559660032/yyowugi1usjcg4qjp6ud.jpg","workTitle":"ing","userName":"Adi Malkiel","address":"gershon st. 12","workName":"walla","workAddress1":"tlv","workAddress2":"david st ","phone":"0502554413"},
+      {"_id":"5764267379289589","img":"https://res.cloudinary.com/ilanbeyos/image/upload/v1559660038/j2nfbuwlozbt1mmqjluh.jpg","workTitle":"CEO","userName":"Edna Berkovitch","address":"Kibbuts Yad Aemek ","workName":"nrg","workAddress1":"tlv","workAddress2":"haagana 15","phone":"0502100699"}]
   },
   getters: {
     isLoading: state => {
@@ -46,6 +49,7 @@ export default new Vuex.Store({
     async initUsers({ commit }) {
       let users = localStorage.getItem("users");
       users = JSON.parse(users);
+      if(!users)return
       commit("setUsers", users);
     },
     async getUserLocation({ state, dispatch, commit }, address) {
