@@ -39,6 +39,9 @@ export default {
 <style lang="scss">
 
 .app {
+    .rol-btn{
+        cursor: pointer;
+    }
   .app-page {
     height: 90vh;
     margin-top: 5rem;
