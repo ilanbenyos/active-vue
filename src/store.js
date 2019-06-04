@@ -52,26 +52,25 @@ export default new Vuex.Store({
       let str = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyDKvvBgAkSCugEbXckutuAFuqPzthsCnJ8`;
       try {
         let res = await axios.post(str);
-        if(res.status === 'OVER_QUERY_LIMIT') {
-          debugger
-          return {lat:'55555', lng:'6666666666'}
+        if (res.results && res.results[0] && res.results[0].geometry) {
+          return res.results[0].geometry.location;
         }
-        return res.results[0].geometry.location;
+        return { lat: "mock1", lng: "mock2" };
       } catch (err) {
-        console.log('error getting geo', err);
+        console.log("error getting geo", err);
       }
     },
     async createUser({ state, dispatch, commit }, user) {
       user._id = Math.random()
         .toString()
         .substring(3);
-      user.geo = await dispatch('getUserLocation', user.address)
+      user.geo = await dispatch("getUserLocation", user.address);
 
       commit("createUser", user);
       commit("setUsers");
     },
     async editUser({ state, dispatch, commit }, user) {
-      user.geo = await dispatch('getUserLocation', user.address)
+      user.geo = await dispatch("getUserLocation", user.address);
       commit("editUser", user);
       commit("setUsers");
     },
