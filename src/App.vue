@@ -1,13 +1,12 @@
 <template>
   <v-app class="app">
     <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>CELLXPERT</span>
-        <span class="font-weight-light">- DATA MUZE API</span>
-      </v-toolbar-title>
+      <v-toolbar-title class="headline text-uppercase">My App</v-toolbar-title>
       <v-spacer></v-spacer>
-      <router-link :to="{ name: 'FrontApp' }" class="ml-2">Front</router-link>
-      <router-link :to="{ name: 'BackApp' }" class="ml-2">Back</router-link>
+      <router-link :to="{ name: 'Users' }" class="ml-2">Users</router-link>
+      <router-link :to="{ name: 'User', params: { id: 'new' } }" class="ml-2"
+        >New User</router-link
+      >
       <router-link to="/about" class="ml-2">About Ilan</router-link>
     </v-toolbar>
     <router-view></router-view>
@@ -26,8 +25,8 @@ export default {
       //
     };
   },
-  async mounted() {
-    this.$store.dispatch("initDB");
+  created() {
+    this.$store.dispatch("initUsers");
   },
   computed: {
     isLoading() {
@@ -37,11 +36,21 @@ export default {
 };
 </script>
 <style lang="scss">
-
 .app {
-    .rol-btn{
-        cursor: pointer;
+  .rol-btn {
+    cursor: pointer;
+  }
+    .app-flex{
+        display: flex;
     }
+  .img {
+    width: 120px;
+    height: 120px;
+    img {
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
   .app-page {
     height: 90vh;
     margin-top: 5rem;
@@ -63,5 +72,11 @@ export default {
   .router-link-exact-active.router-link-active {
     color: lightseagreen;
   }
+    .icon-delete{
+        background: url(assets/sprite.png) 1rem 0;
+    }
+    .icon-edit{
+        background: url(assets/sprite.png) 0 6.2rem;
+    }
 }
 </style>
